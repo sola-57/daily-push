@@ -1,0 +1,71 @@
+name: 每日推送
+
+on:
+  schedule:
+    # 每天 08\:00 UTC (北京时间 16\:00，需要调整为北京时间 08\:00)
+    - cron: '0 0 * * *'  # UTC 00\:00 = 北京时间 08\:00
+    - cron: '0 1 * * *'  # UTC 01\:00 = 北京时间 09\:00
+    - cron: '0 2 * * *'  # UTC 02\:00 = 北京时间 10\:00
+
+  # 允许手动触发
+  workflow_dispatch:
+
+jobs:
+  ai_news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+    
+      - name: 设置 Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+    
+      - name: 安装依赖
+        run: |
+          pip install requests beautifulsoup4
+    
+      - name: 发送AI资讯
+        env:
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: python ai_news.py
+
+  stock_news:
+    runs-on: ubuntu-latest
+    needs: ai_news
+    steps:
+      - uses: actions/checkout@v3
+    
+      - name: 设置 Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+    
+      - name: 安装依赖
+        run: |
+          pip install requests beautifulsoup4
+    
+      - name: 发送股市资讯
+        env:
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: python stock_news.py
+
+  english_reading:
+    runs-on: ubuntu-latest
+    needs: stock_news
+    steps:
+      - uses: actions/checkout@v3
+    
+      - name: 设置 Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+    
+      - name: 安装依赖
+        run: |
+          pip install requests beautifulsoup4
+    
+      - name: 发送英语阅读
+        env:
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: python english_reading.py
