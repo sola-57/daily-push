@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-每日英语阅读理解推送 - GitHub Actions版本
+每日英语阅读理解推送 - GitHub Actions版本 (修复版)
+修复了KeyError问题，使用.get()方法安全访问字典键
 """
 
 import smtplib
@@ -37,15 +38,15 @@ The most important thing is to find activities that are enjoyable. Whether it is
             'questions': [
                 {
                     'question': 'According to the passage, what is the main benefit of regular exercise?',
-                    'options': ['A. Making money', 'B. Maintaining good health', 'C. Finding a job', 'D. Traveling abroad'],
+                    'options': ['A. Making money', 'B. Maintaining good health', 'C. Getting a promotion', 'D. Becoming famous'],
                     'answer': 'B',
-                    'explanation': '文中第一段明确提到"Regular exercise is essential for maintaining good health."'
+                    'explanation': '文中第一段第一句明确指出"Regular exercise is essential for maintaining good health."'
                 },
                 {
                     'question': 'What does the author suggest for people who find it difficult to start exercising?',
-                    'options': ['A. Run a marathon immediately', 'B. Join an expensive gym', 'C. Begin with small, manageable steps', 'D. Hire a personal trainer'],
+                    'options': ['A. Join a gym immediately', 'B. Hire a personal trainer', 'C. Begin with small, manageable steps', 'D. Exercise for at least one hour daily'],
                     'answer': 'C',
-                    'explanation': '文中第二段指出"The key is to begin with small, manageable steps."'
+                    'explanation': '文中第二段提到"The key is to begin with small, manageable steps."'
                 },
                 {
                     'question': 'What social benefit does exercise provide according to the passage?',
@@ -69,84 +70,161 @@ However, technology in education also presents challenges. Screen time concerns 
 
 Teachers play a crucial role in integrating technology effectively. They must select appropriate digital tools and ensure that technology enhances rather than replaces meaningful human interaction. Professional development helps educators stay current with rapidly evolving educational technologies.
 
-The future of education likely involves a blended approach, combining the best of digital innovation with proven traditional teaching methods. This hybrid model can personalize learning while maintaining the social aspects of education that are vital for student development.''',
+The future of education likely involves a blended approach, combining the best of digital innovation with proven traditional teaching methods. This hybrid model can personalize learning while maintaining the essential human elements of education.''',
             'questions': [
                 {
-                    'question': 'What is one benefit of technology in education mentioned in the passage?',
-                    'options': ['A. Reducing teacher salaries', 'B. Making learning more accessible', 'C. Eliminating homework', 'D. Shortening school hours'],
+                    'question': 'According to the passage, how has technology affected education?',
+                    'options': ['A. It has made learning more difficult', 'B. It has made learning more accessible and engaging', 'C. It has eliminated the need for teachers', 'D. It has reduced student motivation'],
                     'answer': 'B',
                     'explanation': '文中第一段提到"Digital devices and online resources have made learning more accessible and engaging."'
                 },
                 {
                     'question': 'What challenge does technology in education present?',
-                    'options': ['A. Too many textbooks', 'B. The digital divide', 'C. Longer school days', 'D. More homework'],
-                    'Answer': 'B',
-                    'explanation': '文中第二段指出"not all students have equal access to devices and reliable internet connections, creating a digital divide."'
+                    'options': ['A. Students learn too quickly', 'B. Screen time concerns and digital divide', 'C. Teachers refuse to use technology', 'D. Schools have too much funding'],
+                    'answer': 'B',
+                    'explanation': '文中第二段提到屏幕时间问题和数字鸿沟（digital divide）。'
                 },
                 {
-                    'question': 'What is the teacher\'s role in integrating technology?',
-                    'options': ['A. Replacing all traditional methods', 'B. Selecting appropriate digital tools', 'C. Avoiding technology completely', 'D. Buying new devices'],
+                    'question': 'What is the role of teachers in technology integration?',
+                    'options': ['A. To replace technology with traditional methods', 'B. To select appropriate tools and ensure technology enhances learning', 'C. To avoid using any digital tools', 'D. To reduce human interaction in classrooms'],
                     'answer': 'B',
-                    'explanation': '文中第三段提到"They must select appropriate digital tools and ensure that technology enhances rather than replaces meaningful human interaction."'
+                    'explanation': '文中第三段指出教师必须选择合适的数字工具，并确保技术增强而不是取代有意义的人际互动。'
                 },
                 {
                     'question': 'What does the author predict about the future of education?',
-                    'options': ['A. Complete elimination of technology', 'B. A blended approach combining digital and traditional methods', 'C. All learning will be online', 'D. Teachers will be replaced by robots'],
+                    'options': ['A. Complete replacement of teachers by technology', 'B. A blended approach combining digital and traditional methods', 'C. Elimination of all digital devices', 'D. Only online learning will exist'],
                     'answer': 'B',
-                    'explanation': '文中最后一段指出"The future of education likely involves a blended approach, combining the best of digital innovation with proven traditional teaching methods."'
+                    'explanation': '文中最后一段提到"The future of education likely involves a blended approach, combining the best of digital innovation with proven traditional teaching methods."'
                 }
             ]
         },
         {
             'title': 'The Importance of Sleep',
-            'content': '''Sleep is a fundamental biological need that affects every aspect of human health. During sleep, the body repairs tissues, consolidates memories, and regulates hormones. Adults typically need 7-9 hours of sleep per night for optimal functioning.
+            'content': '''Sleep is a fundamental biological need that affects every aspect of our health and well-being. Despite its importance, many people do not get enough sleep due to busy schedules, stress, or poor sleep habits. Adults typically need 7-9 hours of sleep per night to function optimally.
 
-Chronic sleep deprivation can have serious consequences. It impairs cognitive function, reduces immune system effectiveness, and increases the risk of accidents. Long-term sleep deficiency has been linked to obesity, cardiovascular disease, and mental health disorders.
+During sleep, the body performs essential maintenance tasks. The brain consolidates memories and processes information from the day. The immune system strengthens its defenses against illness. Hormones that regulate appetite, growth, and stress are balanced during sleep.
 
-Many factors can disrupt sleep patterns. Stress, electronic device use before bedtime, irregular schedules, and caffeine consumption are common culprits. Creating a sleep-friendly environment and establishing consistent bedtime routines can significantly improve sleep quality.
+Chronic sleep deprivation can have serious consequences. It impairs cognitive function, affecting memory, concentration, and decision-making abilities. It also increases the risk of accidents, weakens the immune system, and contributes to mental health problems such as anxiety and depression.
 
-Some people believe they can function well on minimal sleep, but research consistently shows that most adults need adequate sleep to perform at their best. Prioritizing sleep is an investment in overall health and productivity.''',
+Improving sleep quality involves creating a consistent sleep schedule, maintaining a comfortable sleep environment, and avoiding stimulants like caffeine before bedtime. Small changes in sleep habits can lead to significant improvements in overall health and daily functioning.''',
             'questions': [
                 {
-                    'question': 'According to the passage, what happens during sleep?',
-                    'options': ['A. The body becomes completely inactive', 'B. The body repairs tissues and consolidates memories', 'C. The brain stops working', 'D. Nothing important happens'],
+                    'question': 'According to the passage, how many hours of sleep do adults typically need?',
+                    'options': ['A. 4-5 hours', 'B. 5-6 hours', 'C. 7-9 hours', 'D. 10-12 hours'],
+                    'answer': 'C',
+                    'explanation': '文中第一段明确指出"Adults typically need 7-9 hours of sleep per night to function optimally."'
+                },
+                {
+                    'question': 'What does the brain do during sleep?',
+                    'options': ['A. Stops working completely', 'B. Consolidates memories and processes information', 'C. Only controls breathing', 'D. Produces caffeine'],
                     'answer': 'B',
-                    'explanation': '文中第一段提到"During sleep, the body repairs tissues, consolidates memories, and regulates hormones."'
+                    'explanation': '文中第二段提到"The brain consolidates memories and processes information from the day."'
                 },
                 {
                     'question': 'What is a consequence of chronic sleep deprivation?',
                     'options': ['A. Improved memory', 'B. Better immune function', 'C. Impaired cognitive function', 'D. Increased energy'],
                     'answer': 'C',
-                    'explanation': '文中第二段指出"It impairs cognitive function, reduces immune system effectiveness, and increases the risk of accidents."'
+                    'explanation': '文中第三段提到"It impairs cognitive function, affecting memory, concentration, and decision-making abilities."'
                 },
                 {
-                    'question': 'What can disrupt sleep patterns according to the passage?',
-                    'options': ['A. Reading books', 'B. Regular exercise', 'C. Electronic device use before bedtime', 'D. Drinking water'],
+                    'question': 'What can improve sleep quality?',
+                    'options': ['A. Drinking coffee before bed', 'B. Irregular sleep schedule', 'C. Creating a consistent sleep schedule and comfortable environment', 'D. Using electronic devices in bed'],
                     'answer': 'C',
-                    'explanation': '文中第三段提到"Stress, electronic device use before bedtime, irregular schedules, and caffeine consumption are common culprits."'
+                    'explanation': '文中最后一段提到改善睡眠质量的方法包括建立一致的睡眠时间表和保持舒适的睡眠环境。'
+                }
+            ]
+        },
+        {
+            'title': 'Climate Change and Its Effects',
+            'content': '''Climate change is one of the most pressing challenges facing the world today. The Earth\'s average temperature has risen significantly over the past century, primarily due to human activities such as burning fossil fuels and deforestation. This global warming trend is causing widespread environmental changes.
+
+The effects of climate change are visible across the globe. Rising sea levels threaten coastal communities and island nations. Extreme weather events, including hurricanes, droughts, and heat waves, are becoming more frequent and severe. Ecosystems are being disrupted, leading to species extinction and loss of biodiversity.
+
+Agriculture is particularly vulnerable to climate change. Changes in temperature and precipitation patterns affect crop yields and food security. Some regions may become too hot or dry to support traditional farming, while others may experience increased flooding.
+
+Addressing climate change requires both mitigation and adaptation strategies. Reducing greenhouse gas emissions through renewable energy and sustainable practices is essential. At the same time, communities must adapt to changes that are already occurring, such as building flood defenses and developing drought-resistant crops.''',
+            'questions': [
+                {
+                    'question': 'What is the main cause of global warming according to the passage?',
+                    'options': ['A. Natural climate cycles', 'B. Solar radiation', 'C. Human activities like burning fossil fuels', 'D. Ocean currents'],
+                    'answer': 'C',
+                    'explanation': '文中第一段提到"primarily due to human activities such as burning fossil fuels and deforestation."'
                 },
                 {
-                    'question': 'What does research show about people who claim to function well on minimal sleep?',
-                    'options': ['A. They are correct', 'B. Most adults need adequate sleep to perform at their best', 'C. They are healthier than others', 'D. They do not need sleep at all'],
+                    'question': 'What effect of climate change is mentioned in the passage?',
+                    'options': ['A. Decreased sea levels', 'B. Fewer extreme weather events', 'C. Rising sea levels and extreme weather', 'D. Improved air quality'],
+                    'answer': 'C',
+                    'explanation': '文中第二段提到海平面上升和极端天气事件变得更加频繁和严重。'
+                },
+                {
+                    'question': 'Why is agriculture vulnerable to climate change?',
+                    'options': ['A. Because farmers refuse to adapt', 'B. Because changes in temperature and precipitation affect crop yields', 'C. Because there is too much food production', 'D. Because climate change improves farming conditions'],
                     'answer': 'B',
-                    'explanation': '文中最后一段指出"research consistently shows that most adults need adequate sleep to perform at their best."'
+                    'explanation': '文中第三段指出"Changes in temperature and precipitation patterns affect crop yields and food security."'
+                },
+                {
+                    'question': 'What strategies are needed to address climate change?',
+                    'options': ['A. Only mitigation strategies', 'B. Only adaptation strategies', 'C. Both mitigation and adaptation strategies', 'D. No action is needed'],
+                    'answer': 'C',
+                    'explanation': '文中最后一段明确指出"Addressing climate change requires both mitigation and adaptation strategies."'
+                }
+            ]
+        },
+        {
+            'title': 'The Role of Reading in Modern Life',
+            'content': '''Reading remains a vital skill in the digital age, despite the proliferation of video and audio content. Regular reading strengthens brain connections, improves vocabulary and comprehension skills, and enhances empathy by exposing readers to different perspectives and experiences.
+
+Many people claim they do not have time to read, but this is often a matter of priorities rather than actual time constraints. Replacing just 30 minutes of television or social media with reading each day can result in completing 20 or more books per year. E-books and audiobooks make reading more accessible than ever.
+
+Different types of reading serve different purposes. Fiction develops imagination and emotional intelligence. Non-fiction provides knowledge and practical skills. News and current events keep readers informed about the world. Professional reading supports career development.
+
+The format of reading has evolved with technology, but the fundamental benefits remain unchanged. Whether reading physical books, e-readers, or smartphones, the cognitive and emotional benefits of engaging with written content continue to make reading a valuable activity in modern life.''',
+            'questions': [
+                {
+                    'question': 'According to the passage, what is one benefit of regular reading?',
+                    'options': ['A. It weakens brain connections', 'B. It reduces vocabulary', 'C. It strengthens brain connections and improves vocabulary', 'D. It decreases empathy'],
+                    'answer': 'C',
+                    'explanation': '文中第一段提到"Regular reading strengthens brain connections, improves vocabulary and comprehension skills."'
+                },
+                {
+                    'question': 'What does the author say about people who claim they have no time to read?',
+                    'options': ['A. They are correct', 'B. It is a matter of priorities rather than actual time constraints', 'C. They should quit their jobs', 'D. They need to sleep less'],
+                    'answer': 'B',
+                    'explanation': '文中第二段指出"this is often a matter of priorities rather than actual time constraints."'
+                },
+                {
+                    'question': 'What does fiction reading develop according to the passage?',
+                    'options': ['A. Only practical skills', 'B. Imagination and emotional intelligence', 'C. Professional career skills', 'D. News and current events knowledge'],
+                    'answer': 'B',
+                    'explanation': '文中第三段提到"Fiction develops imagination and emotional intelligence."'
+                },
+                {
+                    'question': 'What does the author conclude about reading in modern life?',
+                    'options': ['A. Reading is no longer valuable', 'B. Only physical books are beneficial', 'C. The fundamental benefits of reading remain unchanged despite format changes', 'D. People should stop reading'],
+                    'answer': 'C',
+                    'explanation': '文中最后一段指出"The format of reading has evolved with technology, but the fundamental benefits remain unchanged."'
                 }
             ]
         }
     ]
-  
+
     # 随机选择一篇文章
-    return random.choice(reading_materials)
+    reading = random.choice(reading_materials)
+    return reading
 
 def generate_email_content(reading):
-    """生成邮件HTML内容"""
+    """
+    生成邮件内容
+    """
     html = f"""
+    <!DOCTYPE html>
     <html>
     <head>
         <meta charset="UTF-8">
+        <title>每日英语阅读理解</title>
         <style>
-            body {{ font-family: Arial, sans-serif; line-height: 1.6; color: #333; }}
-            .container {{ max-width: 800px; margin: 0 auto; padding: 20px; }}
+            body {{ font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }}
+            .container {{ background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; }}
             .header {{ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; }}
             .header h1 {{ margin: 0; font-size: 28px; }}
             .header p {{ margin: 10px 0 0 0; opacity: 0.9; }}
@@ -170,7 +248,7 @@ def generate_email_content(reading):
                 <h1>📚 每日英语阅读理解</h1>
                 <p>同等学力英语考试难度 | {datetime.now().strftime('%Y年%m月%d日')}</p>
             </div>
-          
+        
             <div class="section">
                 <h2>📝 阅读文章</h2>
                 <div class="article">
@@ -178,33 +256,43 @@ def generate_email_content(reading):
                     <p>{reading['content'].replace(chr(10), '<br>')}</p>
                 </div>
             </div>
-          
+        
             <div class="section">
                 <h2>❓ 阅读理解题目</h2>
     """
-  
-    # 添加题目
+
+    # 添加题目 - 使用.get()方法安全访问字典键，避免KeyError
     for i, q in enumerate(reading['questions'], 1):
+        # 安全获取题目数据，使用默认值防止KeyError
+        question_text = q.get('question', f'Question {i}')
+        options = q.get('options', ['A.', 'B.', 'C.', 'D.'])
+        answer = q.get('answer', 'A')
+        explanation = q.get('explanation', '暂无解析')
+      
+        # 确保options列表至少有4个元素
+        while len(options) < 4:
+            options.append(f'{chr(65+len(options))}.')
+      
         html += f"""
                 <div class="question">
                     <div class="question-number">Question {i}:</div>
-                    <p>{q['question']}</p>
+                    <p>{question_text}</p>
                     <div class="options">
-                        <div class="option">{q['options'][0]}</div>
-                        <div class="option">{q['options'][1]}</div>
-                        <div class="option">{q['options'][2]}</div>
-                        <div class="option">{q['options'][3]}</div>
+                        <div class="option">{options[0]}</div>
+                        <div class="option">{options[1]}</div>
+                        <div class="option">{options[2]}</div>
+                        <div class="option">{options[3]}</div>
                     </div>
                     <div class="answer">
-                        <div class="answer-label">✅ 正确答案: {q['answer']}</div>
-                        <p><strong>解析:</strong> {q['explanation']}</p>
+                        <div class="answer-label">✅ 正确答案: {answer}</div>
+                        <p><strong>解析:</strong> {explanation}</p>
                     </div>
                 </div>
         """
-  
+
     html += """
             </div>
-          
+        
             <div class="footer">
                 <p>💡 提示: 建议先阅读文章，尝试自己回答问题，然后再查看答案解析</p>
                 <p>📧 每日推送 | 坚持学习，每天进步一点点</p>
@@ -213,7 +301,7 @@ def generate_email_content(reading):
     </body>
     </html>
     """
-  
+
     return html
 
 def send_email(subject, content):
@@ -222,51 +310,54 @@ def send_email(subject, content):
     """
     try:
         print(f"正在发送邮件到: {EMAIL_CONFIG['receiver']}")
-      
+    
         msg = MIMEMultipart()
         # 修复From头部格式
         msg['From'] = f"Daily Push <{EMAIL_CONFIG['sender']}>"
         msg['To'] = EMAIL_CONFIG['receiver']
         msg['Subject'] = Header(subject, 'utf-8')
-      
+    
+        # 添加HTML内容
         msg.attach(MIMEText(content, 'html', 'utf-8'))
-      
+    
+        # 连接SMTP服务器并发送
         server = smtplib.SMTP_SSL(EMAIL_CONFIG['smtp_server'], EMAIL_CONFIG['smtp_port'])
         server.login(EMAIL_CONFIG['sender'], EMAIL_CONFIG['password'])
-        server.sendmail(EMAIL_CONFIG['sender'], [EMAIL_CONFIG['receiver']], msg.as_string())
+        server.send_message(msg)
         server.quit()
-      
-        print(f"✅ 邮件发送成功！")
+    
+        print("✅ 邮件发送成功！")
         return True
+    
     except Exception as e:
         print(f"❌ 邮件发送失败: {str(e)}")
         return False
 
 def main():
-    """主函数"""
-    print("=" * 70)
-    print("📚 每日英语阅读理解推送")
-    print("=" * 70)
-  
+    """
+    主函数
+    """
+    print("=" * 50)
+    print("每日英语阅读理解推送")
+    print("=" * 50)
+
     # 获取阅读材料
     reading = get_english_reading()
-    print(f"📖 已选择文章: {reading['title']}")
-  
+    print(f"已选择文章: {reading['title']}")
+
     # 生成邮件内容
     email_content = generate_email_content(reading)
-  
+
     # 发送邮件
     subject = f"📚 每日英语阅读理解 - {datetime.now().strftime('%Y年%m月%d日')}"
     success = send_email(subject, email_content)
-  
+
     if success:
-        print("\n" + "=" * 70)
-        print("✅ 每日英语阅读理解推送完成！")
-        print("=" * 70)
+        print("\n✅ 推送完成！")
     else:
-        print("\n" + "=" * 70)
-        print("❌ 推送失败")
-        print("=" * 70)
+        print("\n❌ 推送失败！")
+
+    return success
 
 if __name__ == "__main__":
     main()
